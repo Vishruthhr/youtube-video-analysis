@@ -1,0 +1,54 @@
+<div class="card shadow-sm border-0 p-4 mb-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h3 class="mb-0">
+
+            📜 Transcript
+
+        </h3>
+
+        <button
+            class="btn btn-outline-success btn-sm"
+            onclick="copyTranscript()">
+
+            📋 Copy
+
+        </button>
+
+    </div>
+
+    <hr>
+
+    <div
+        id="transcriptText"
+        class="p-3 rounded bg-light"
+        style="
+            max-height:450px;
+            overflow-y:auto;
+            white-space:pre-wrap;
+            word-break:break-word;
+            line-height:1.8;
+            font-size:15px;
+        ">
+
+        {{ transcript }}
+
+    </div>
+
+</div>
+
+<script>
+
+function copyTranscript(){
+
+    const transcript =
+        document.getElementById("transcriptText").innerText;
+
+    navigator.clipboard.writeText(transcript);
+
+    alert("Transcript copied successfully!");
+
+}
+
+</script>

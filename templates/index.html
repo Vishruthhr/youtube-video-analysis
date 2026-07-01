@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Video Analysis System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card p-5">
+
+                <div class="text-center">
+
+                    <h1 class="mb-3">
+
+                        🎥 YouTube Video Analysis
+
+                    </h1>
+
+                    <p class="text-muted mb-4">
+
+                        Analyze any public YouTube video using AI.
+
+                    </p>
+
+                </div>
+
+                {% if error %}
+
+                <div class="alert alert-danger">
+
+                    {{ error }}
+
+                </div>
+
+                {% endif %}
+
+                <form action="/analyze" method="POST">
+
+                    <div class="mb-4">
+
+                        <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            name="video_url"
+                            placeholder="https://www.youtube.com/watch?v=..."
+                            required>
+
+                    </div>
+
+                    <div class="d-grid">
+
+                        <button
+                            type="submit"
+                            class="btn btn-danger btn-lg">
+
+                            🎬 Analyze Video
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <hr>
+
+                <div class="row text-center">
+
+                    <div class="col-md-4">
+
+                        <h5>🤖 AI Analysis</h5>
+
+                        <small class="text-muted">
+
+                            Summary, Sentiment, Keywords
+
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <h5>📄 PDF Report</h5>
+
+                        <small class="text-muted">
+
+                            Download Complete Report
+
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <h5>📜 History</h5>
+
+                        <small class="text-muted">
+
+                            View Previous Analyses
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+
+                    <a href="/history"
+                       class="btn btn-secondary">
+
+                        📜 View Analysis History
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+<footer class="text-center mt-5 text-muted">
+
+    <hr>
+
+    <p>
+
+        © 2026 YouTube Video Analysis System
+
+    </p>
+
+    <p>
+
+        Developed by <strong>Vishruth HR</strong>
+
+    </p>
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<div class="card shadow-sm border-0 p-4 mb-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <h3 class="mb-0">
+
+            💬 Ask AI About This Video
+
+        </h3>
+
+        <span class="badge bg-info">
+
+            AI Assistant
+
+        </span>
+
+    </div>
+
+    <hr>
+
+    <form
+        action="/analyze"
+        method="POST"
+        id="qaForm">
+
+        <input
+            type="hidden"
+            name="video_url"
+            value="{{ video.original_url }}">
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                class="form-control"
+                name="question"
+                placeholder="Ask anything about this video..."
+                value="{{ question }}"
+                required>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+                id="askButton">
+
+                🤖 Ask AI
+
+            </button>
+
+        </div>
+
+    </form>
+
+    {% if answer %}
+
+        <hr>
+
+        <h5 class="mb-3">
+
+            AI Response
+
+        </h5>
+
+        <div
+            id="answerBox"
+            class="alert alert-success"
+            style="white-space:pre-wrap; line-height:1.7;">
+
+            {{ answer }}
+
+        </div>
+
+        <button
+            class="btn btn-outline-success btn-sm"
+            onclick="copyAnswer()">
+
+            📋 Copy Answer
+
+        </button>
+
+    {% endif %}
+
+</div>
+
+<script>
+
+function copyAnswer(){
+
+    const answer =
+        document.getElementById("answerBox").innerText;
+
+    navigator.clipboard.writeText(answer);
+
+    alert("Answer copied successfully!");
+
+}
+
+document
+.getElementById("qaForm")
+.addEventListener("submit", function(){
+
+    document
+    .getElementById("askButton")
+    .innerHTML =
+    "⏳ Thinking...";
+
+});
+
+</script>

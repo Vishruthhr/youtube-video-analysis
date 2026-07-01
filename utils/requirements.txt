@@ -1,0 +1,7 @@
+Flask
+yt-dlp
+youtube-transcript-api
+google-generativeai
+reportlab
+requests
+python-dotenv

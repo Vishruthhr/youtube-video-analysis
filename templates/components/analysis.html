@@ -1,0 +1,144 @@
+<div class="row g-4 mb-4">
+
+    <!-- Sentiment -->
+
+    <div class="col-lg-4">
+
+        <div class="card shadow-sm border-0 p-4 h-100">
+
+            <h4 class="mb-3">
+
+                😊 Sentiment Analysis
+
+            </h4>
+
+            <hr>
+
+            {% if sentiment.sentiment == "Positive" %}
+
+                <span class="badge bg-success fs-6 mb-3">
+
+                    {{ sentiment.sentiment }}
+
+                </span>
+
+            {% elif sentiment.sentiment == "Negative" %}
+
+                <span class="badge bg-danger fs-6 mb-3">
+
+                    {{ sentiment.sentiment }}
+
+                </span>
+
+            {% else %}
+
+                <span class="badge bg-warning text-dark fs-6 mb-3">
+
+                    {{ sentiment.sentiment }}
+
+                </span>
+
+            {% endif %}
+
+            <p>
+
+                <strong>Confidence</strong>
+
+            </p>
+
+            <div class="progress mb-3" style="height:22px;">
+
+                <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    style="width: {{ sentiment.confidence }};">
+
+                    {{ sentiment.confidence }}
+
+                </div>
+
+            </div>
+
+            <p class="text-muted mb-0">
+
+                {{ sentiment.reason }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Keywords -->
+
+    <div class="col-lg-4">
+
+        <div class="card shadow-sm border-0 p-4 h-100">
+
+            <h4 class="mb-3">
+
+                🔑 Keywords
+
+            </h4>
+
+            <hr>
+
+            {% if keywords %}
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    {% for keyword in keywords %}
+
+                        <span class="badge bg-primary fs-6">
+
+                            {{ keyword }}
+
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <p class="text-muted">
+
+                    No keywords available.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Topic -->
+
+    <div class="col-lg-4">
+
+        <div class="card shadow-sm border-0 p-4 h-100">
+
+            <h4 class="mb-3">
+
+                🏷 Detected Topic
+
+            </h4>
+
+            <hr>
+
+            <div class="text-center mt-3">
+
+                <span class="badge bg-success fs-5 p-3">
+
+                    {{ topic }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

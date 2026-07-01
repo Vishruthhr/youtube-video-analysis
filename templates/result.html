@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="icon"
+          href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Analysis Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <h1 class="text-center mb-4">
+
+        🎥 YouTube Analysis Dashboard
+
+    </h1>
+
+    {% if video.error %}
+
+        <div class="alert alert-danger">
+
+            {{ video.error }}
+
+        </div>
+
+    {% else %}
+
+    <!-- Video -->
+
+    <div class="row mb-4">
+
+        <div class="col-lg-4">
+
+            <div class="card shadow">
+
+                <img
+                    src="{{ video.thumbnail }}"
+                    class="card-img-top"
+                    alt="Thumbnail">
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="ratio ratio-16x9">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/{{ video.video_id }}"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Title -->
+
+    <div class="card shadow p-4 mb-4">
+
+        <h2>{{ video.title }}</h2>
+
+        <p class="text-muted mb-1">
+
+            {{ video.channel }}
+
+        </p>
+
+        <p class="text-muted">
+
+            📅 Uploaded:
+            {{ video.upload_date }}
+
+        </p>
+
+    </div>
+
+    {% include "components/stats.html" %}
+
+    {% include "components/summary.html" %}
+
+    {% include "components/transcript.html" %}
+
+    {% include "components/analysis.html" %}
+
+    {% include "components/qa.html" %}
+
+    <div class="text-center mt-4 mb-5">
+
+        <form
+            action="/analyze"
+            method="POST"
+            class="d-inline">
+
+            <input
+                type="hidden"
+                name="video_url"
+                value="{{ video.original_url }}">
+
+            <input
+                type="hidden"
+                name="question"
+                value="{{ question }}">
+
+            <input
+                type="hidden"
+                name="download_pdf"
+                value="true">
+
+            <button
+                class="btn btn-success btn-lg">
+
+                📄 Download PDF
+
+            </button>
+
+        </form>
+
+        <a
+            href="/"
+            class="btn btn-danger btn-lg ms-3">
+
+            🔄 Analyze Another
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<footer class="text-center mt-5 mb-3 text-muted">
+
+    <hr>
+
+    <p>
+
+        © 2026 YouTube Video Analysis System
+
+    </p>
+
+    <p>
+
+        Developed by <strong>Vishruth HR</strong>
+
+    </p>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
